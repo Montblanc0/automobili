@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="data:," rel="icon">
+    <link href="https://cdn.simplecss.org/simple.min.css" rel="stylesheet">
+    <title>Edit</title>
+</head>
+<body>
+<header>
+    <a class="button" th:href="@{/}">GO BACK</a>
+</header>
+
+<form method="post" th:action="@{/update}" th:object="${auto}">
+    <fieldset>
+        <input th:field="*{id}" type="hidden">
+        <legend>Inserisci Auto</legend>
+        <label for="marca">Marca</label>
+        <input th:field="*{marca}">
+        <label for="modello">Modello</label>
+        <input th:field="*{modello}">
+        <label for="prezzo">Prezzo</label>
+        <input th:field="*{prezzo}" type="number">
+        <label for="colore">Colore</label>
+        <input th:field="*{colore}">
+        <label for="alimentazione">Alimentazione</label>
+        <select th:field="*{alimentazione}">
+            <option th:each="tipo : ${T(it.montblanc0.entities.Alimentazione).values()}" th:text="${tipo}"
+                    th:value="${tipo}"></option>
+        </select>
+        <label for="motore">Motore</label>
+        <select id="motore" name="motore">
+            <option th:each="motore : ${motori}" th:selected="${motore.id eq auto.PMotore.id}"
+                    th:text="${motore.descrizione}"
+                    th:value="${motore.id}"></option>
+        </select>
+        <button style="display: block; margin: auto">EDIT</button>
+    </fieldset>
+
+</form>
+</body>
+</html>

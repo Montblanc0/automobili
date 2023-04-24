@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="data:," rel="icon">
+    <link href="https://cdn.simplecss.org/simple.min.css" rel="stylesheet">
+    <title>Auto</title>
+</head>
+<body>
+<header>
+    <a class="button" th:href="@{/}">GO BACK</a>
+</header>
+<table th:if="null != ${auto}">
+    <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Modello</th>
+        <th>Prezzo</th>
+        <th>Colore</th>
+        <th>Alimentazione</th>
+        <th>Motore</th>
+    </tr>
+    <tr>
+        <td th:text="${auto.id}">ID</td>
+        <td th:text="${auto.marca}">Marca</td>
+        <td th:text="${auto.modello}">Modello</td>
+        <td th:text="${auto.prezzo}">Prezzo</td>
+        <td th:text="${auto.colore}">Colore</td>
+        <td th:text="${auto.alimentazione}">Alimentazione</td>
+        <td>
+            <table>
+                <tr>
+                    <td th:text="${auto.PMotore.id}" title="ID">ID_MOTORE</td>
+                </tr>
+                <tr>
+                    <td th:text="${auto.PMotore.descrizione}" title="Descrizione">Descrizione</td>
+                </tr>
+                <tr>
+                    <td th:text="${auto.PMotore.cilindrata}" title="Cilindrata">Cilindrata</td>
+                </tr>
+                <tr>
+                    <td th:text="${auto.PMotore.cavalli}" title="Cavalli">Cavalli</td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <a th:href="@{'/edit/' + ${auto.id}}">Modifica</a>
+            <a th:href="@{'/delete/' + ${auto.id}}">Elimina</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

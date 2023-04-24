@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="data:," rel="icon">
+    <link href="https://cdn.simplecss.org/simple.min.css" rel="stylesheet">
+    <title>Automobili</title>
+</head>
+<body>
+<header>
+    <a class="button" href="/all">GET ALL</a>
+</header>
+
+<form method="post" th:action="@{/new}" th:object="${auto}">
+    <fieldset>
+        <legend>Inserisci Auto</legend>
+        <label for="marca">Marca</label>
+        <input th:field="*{marca}">
+        <label for="modello">Modello</label>
+        <input th:field="*{modello}">
+        <label for="prezzo">Prezzo</label>
+        <input th:field="*{prezzo}" type="number">
+        <label for="colore">Colore</label>
+        <input th:field="*{colore}">
+        <label for="alimentazione">Alimentazione</label>
+        <select th:field="*{alimentazione}">
+            <option th:each="tipo : ${T(it.montblanc0.entities.Alimentazione).values()}" th:text="${tipo}"
+                    th:value="${tipo}"></option>
+        </select>
+        <label for="motore">Motore</label>
+        <select id="motore" name="motore">
+            <option th:each="motore : ${motori}" th:text="${motore.descrizione}" th:value="${motore.id}"></option>
+        </select>
+        <button style="display:block; margin: auto">ADD</button>
+    </fieldset>
+</form>
+
+<form action="/marca" method="get">
+    <fieldset>
+        <legend>Cerca Auto per Marca</legend>
+        <label for="marca">Marca</label>
+        <input id="marca" name="marca">
+        <button style="display:block; margin: auto">SEARCH</button>
+    </fieldset>
+</form>
+
+<form action="/ali" method="get">
+    <fieldset>
+        <legend>Cerca Auto per Alimentazione</legend>
+        <label for="ali">Alimentazione</label>
+        <select id="ali" name="ali">
+            <option th:each="tipo : ${T(it.montblanc0.entities.Alimentazione).values()}" th:text="${tipo}"
+                    th:value="${tipo}"></option>
+        </select>
+        <button style="display:block; margin: auto">SEARCH</button>
+    </fieldset>
+</form>
+
+<form action="/cc" method="get">
+    <fieldset>
+        <legend>Cerca Auto per Cilindrata</legend>
+        <label for="start">Da</label>
+        <input id="start" max="4000" min="1000" name="start" step="100" type="number" value="1000">
+        <label for="end">A</label>
+        <input id="end" max="4000" min="1000" name="end" step="100" type="number" value="4000">
+        <button style="display:block; margin: auto">SEARCH</button>
+    </fieldset>
+</form>
+</body>
+</html>
