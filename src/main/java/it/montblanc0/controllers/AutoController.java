@@ -37,7 +37,7 @@ public class AutoController {
 
 	//  Send A JSON like this:
 	//	{
-	//		"marca": "BMW",
+	//		    "marca": "BMW",
 	//			"modello": "X3",
 	//			"prezzo": 16850,
 	//			"colore": "Nera",
@@ -75,6 +75,7 @@ public class AutoController {
 	                                     @RequestBody Auto auto) {
 		Optional<Auto> autoOptional = autoRepository.findById(id);
 		if (autoOptional.isPresent()) {
+			auto.setId(id);
 			autoService.update(id, auto);
 			return ResponseHandler.generateResponse("Auto was successfully updated", HttpStatus.OK, autoService.getById(id));
 		}
